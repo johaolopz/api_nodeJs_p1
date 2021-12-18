@@ -1,13 +1,8 @@
 const { Router } = require("express");
 const router = Router();
+const { prueba } = require('../controllers/prueba')
 
-router.get('/', (req, res)=> {
-    try {
-        res.status('200').json({message:'/prueba route is Ok'})
-    }
-    catch{
-        res.status('400').send('Error: Cannot GET /prueba')
-    }
-})
+const pruebaController = prueba
+router.get('/', pruebaController)
 
 module.exports = router
