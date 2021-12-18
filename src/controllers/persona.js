@@ -2,7 +2,9 @@
 const persona = require('../models/persona')
 
 function getPersons (req, res){
-    persona.find({}).exec((error, persons)=>{
+    //with sort by name desc
+    persona.find({}).sort({'name':-1}).exec((error, persons)=>{
+    // persona.find({}).exec((error, persons)=>{
         if(error){
             res.status(500).send({message:'Internal Server Error'})
         }
