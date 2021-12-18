@@ -1,11 +1,14 @@
 'use strict'
-var mongoose = require("mongoose")
+const app = require('./src/app')
 
-mongoose.connect('mongodb://localhost:27017/api_nodejs_db')
-    .then(()=>{
-        console.log('Connection is Ok')
-    })
-    .catch((error)=>{
-        console.log(error)
-    })
-    
+// //connection is called
+// const conn = require('./src/db')
+
+//PORT defined
+const port = 3001
+
+//Server is uploaded
+app.listen(port, () => {
+    console.log('Server listening at 3001')
+  });
+
