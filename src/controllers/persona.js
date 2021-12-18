@@ -32,7 +32,7 @@ function addPerson (req, res) {
 
         person.save((error, personStored) =>{
             if(error){
-                res.status(500).send({message: 'Stored error'})
+                res.status(500).send({message: 'Server stored error'})
             }
             else{
                 if(personStored) {
@@ -50,7 +50,60 @@ function addPerson (req, res) {
 
 }
 
+function getOnePerson (req, res){
+    let personId = req.params.id
+    persona.findById(personId).exec((error, personaObj)=>{
+        if(error){
+            res.status(500).send({message: 'Sever search error'})
+        }
+        else{
+            if(personaObj) {
+                res.status(200).send(personaObj)
+            }
+            else{
+                res.status(404).send({message: "Person doesn't exist"})
+            }
+        }
+    })
+}
+
+function updatePerson (req, res){
+    persona.findOneAndUpdate({dni: req.body.dni}, req.body, {new:true}, (error, personaUpdated)=>{
+        if(error){
+            res.status(500).send({message: 'Server updating error'})
+        }
+        else{
+            if(personaUpdated) {
+                res.status(200).send(personaUpdated)
+            }
+            else{
+                res.status(404).send({message: "Person doesn't exist"})
+            }
+        }
+    })
+}
+
+function deletePerson (req, res){
+    let personId = req.params.id
+    persona.findByIdAndRemove(personId, (error, personaRemoved)=>{
+        if(error){
+            res.status(500).send({message: 'Server delete error'})
+        }
+        else{
+            if(personaRemoved) {
+                res.status(200).send({message:'Person was removed'})
+            }
+            else{
+                res.status(404).send({message: "Person doesn't exist"})
+            }
+        }
+    })
+}
+
 module.exports = {
     addPerson,
-    getPersons
+    getPersons,
+    getOnePerson,
+    updatePerson,
+    deletePerson
 }
