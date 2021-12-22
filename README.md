@@ -1,4 +1,4 @@
-API RESTfull with MongDB, ExpressJS and NodeJs
+API RESTful with MongDB, ExpressJS and NodeJs
 to be consumed by the Frontend.
 
-This is a practice exercise.
+This is a knowledge project.
