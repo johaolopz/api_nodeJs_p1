@@ -1,8 +1,9 @@
 'use strict'
 const mongoose = require("mongoose")
+require('dotenv').config()
 
 //'mongodb://localhost:27017/api_nodejs_db'
-mongoose.connect('mongodb+srv://api_nodejs:Api_nodejs@cluster0.zqcvn.mongodb.net/test')
+mongoose.connect(`mongodb+srv://api_nodejs:${process.env.PASSWORD}@cluster0.zqcvn.mongodb.net/test`)
     .then(()=>{
         console.log('Connection is Ok')
     })
